@@ -1,25 +1,32 @@
 import React, { Component } from "react";
+import './Pokecard.scss';
 
 class Pokecard extends Component {
+  static defaultProps = {
+    pokemon: { id: 4, name: "Charmander", type: "fire", base_experience: 62 }
+  }
   render() {
-    const id = this.props[0].id;
+    const pokemon = this.props.pokemon;
+
+    function getImage(num) {
+      if (num <= 10) {
+        return `00${num}`;
+      } else if (num < 99) {
+        return `0${num}`;
+      } else {
+        return num;
+      }
+    }
     return (
       <div className="Pokecard">
-        <div className="Pokecard--card">
-          <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}></img>
+        <h3 className="Pokecard-title">{pokemon.name}</h3>
+        <div className="Pokecard-image">
+          <img src={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${getImage(pokemon.id)}.png`} alt="Pokemon"/>
         </div>
+        <p className="Pokecard-type">Type: <span>{pokemon.type}</span></p>
+        <p className="Pokecard-exp">Experience: <span>{pokemon.base_experience}</span></p>
       </div>
     );
   }
 }
-Pokecard.defaultProps = [
-  { id: 4, name: "Charmander", type: "fire", base_experience: 62 },
-  { id: 7, name: "Squirtle", type: "water", base_experience: 63 },
-  { id: 11, name: "Metapod", type: "bug", base_experience: 72 },
-  { id: 12, name: "Butterfree", type: "flying", base_experience: 178 },
-  { id: 25, name: "Pikachu", type: "electric", base_experience: 112 },
-  { id: 39, name: "Jigglypuff", type: "normal", base_experience: 95 },
-  { id: 94, name: "Gengar", type: "poison", base_experience: 225 },
-  { id: 133, name: "Eevee", type: "normal", base_experience: 65 }
-];
 export default Pokecard;

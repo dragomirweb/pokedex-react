@@ -1,5 +1,31 @@
 .Pokecard {
-    &--card {
-        
+    width: calc(100% - 20px);
+    margin: 0 10px 10px;
+    padding-bottom: 1em;
+    border-radius: 6px;
+    background: #ccc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    @media (min-width: 768px) {
+        width: calc(50% - 20px);
     }
+
+    @media (min-width: 992px) {
+        width: calc(25% - 20px);
+    }
+
+    &-title {
+        color: rgb(41, 55, 240);
+    }
+    &-type, &-exp {
+        margin-top: 0;
+        margin-bottom: 5px;
+        span {
+            text-transform: capitalize;
+        }
+    }
+    
 }
